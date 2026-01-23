@@ -11,21 +11,19 @@ function Navbar() {
 
                 <div className="flex items-center gap-6">
                     <Link to='/categorias' className="hover:underline decoration-2 underline-offset-4">
-                        Listar Categorias
+                        Categorias
                     </Link>
                     
-                    <Link to='/cadastrar-categoria' className="hover:underline decoration-2 underline-offset-4">
+                    <Link to='/cadastrarcategoria' className="hover:underline decoration-2 underline-offset-4">
                         Cadastrar/Atualizar Categoria
                     </Link>
 
-                     <Link to='/cadastrar-categoria' className="hover:underline decoration-2 underline-offset-4">
-                        Deletar Categoria
-                    </Link>
                 </div>
 
             </div>
         </nav>
     )
 }
+
 
 export default Navbar;

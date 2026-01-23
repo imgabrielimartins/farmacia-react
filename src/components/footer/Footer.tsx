@@ -7,7 +7,7 @@ function Footer() {
         <footer className="w-full bg-azure text-black border-t border-black/10">
             <div className="container mx-auto flex flex-col items-center py-8 px-4 gap-6">
                 
-                {/* Branding e Copyright */}
+
                 <div className="text-center">
                     <p className="text-2xl font-extrabold tracking-tight">
                         Farmacia <span className="text-ice-dark">Viva</span>
@@ -17,10 +17,10 @@ function Footer() {
                     </p>
                 </div>
 
-                {/* Divisor minimalista */}
+            
                 <div className="h-px w-16 bg-black/20" />
 
-                {/* Redes Sociais */}
+        
                 <div className="flex flex-col items-center gap-3">
                     <p className="text-sm uppercase tracking-widest font-semibold opacity-60">
                         Conecte-se conosco

@@ -4,74 +4,46 @@ import type Categoria from "../../../model/Categoria";
 import { deletar, listar } from "../../../services/Service";
 
 function DeleteCategoria() {
-    const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
-    const navigate = useNavigate();
-    const { id } = useParams<{ id: string }>(); 
-
-    async function buscarPorId(id: string) {
-        try {
-            await listar(`/categorias/${id}`, setCategoria, {});
-        } catch (error) {
-            console.error("Erro ao procurar categoria:", error);
-        }
+  useEffect(() => {
+    if (id) {
+      listar(`/categorias/${id}`, setCategoria);
     }
+  }, [id]);
 
-    useEffect(() => {
-        if (id !== undefined) {
-            buscarPorId(id);
-        }
-    }, [id]);
+  async function remover() {
+    await deletar(`/categorias/${id}`);
+    alert("Categoria deletada!");
+    navigate("/categorias");
+  }
 
-    async function deletarCategoria() {
-        try {
-            await deletar(`/categorias/${id}`, {});
-            alert("Categoria apagada com sucesso!");
-            retornar();
-        } catch (error) {
-            alert("Erro ao apagar a categoria.");
-        }
-    }
+  return (
+    <div className="container mx-auto text-center">
+      <h1 className="text-3xl my-6">Deletar Categoria</h1>
 
-    function retornar() {
-        navigate("/categorias");
-    }
+      <p>Tem certeza que deseja deletar:</p>
+      <strong>{categoria.titulo}</strong>
 
-    return (
-        <div className='container w-1/3 mx-auto'>
-            <h1 className='text-4xl text-center my-4'>Eliminar categoria</h1>
-            <p className='text-center font-semibold mb-4'>
-                Tem certeza de que deseja apagar a categoria a seguir?
-            </p>
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          onClick={remover}
+          className="bg-red-600 text-white px-4 py-2"
+        >
+          Sim
+        </button>
 
-            <div className='border-coffee border flex flex-col rounded-2xl overflow-hidden justify-between'>
-                <header className='py-2 px-6 bg-navy text-white font-bold text-2xl'>
-                    Categoria
-                </header>
-                
-                <div className="p-8 bg-white">
-                    <p className='text-3xl h-full'>
-                        {categoria.descricao}
-                    </p>
-                </div>
-
-                <div className="flex">
-                    <button 
-                        className='text-white bg-azure hover:bg-navy w-full py-2 transition'
-                        onClick={deletarCategoria}
-                    >
-                        Sim
-                    </button>
-                    <button 
-                        className='w-full text-white bg-azure hover:bg-navy py-2 transition'
-                        onClick={retornar}
-                    >
-                        Não
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
+        <button
+          onClick={() => navigate('/categorias')}
+          className="bg-gray-600 text-white px-4 py-2"
+        >
+          Não
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default DeleteCategoria;

@@ -4,88 +4,85 @@ import type Categoria from '../../../model/Categoria';
 import { atualizar, cadastrar, listar } from '../../../services/Service';
 
 function FormCategoria() {
-    const navigate = useNavigate();
-    const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-    const [categoria, setCategoria] = useState<Categoria>({
-        id: 0,
-        descricao: '',
+  const [categoria, setCategoria] = useState<Categoria>({
+    id: 0,
+    titulo: '',
+    descricao: '',
+    setor: '',
+  });
+
+  useEffect(() => {
+    if (id) {
+      listar(`/categorias/${id}`, setCategoria);
+    }
+  }, [id]);
+
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    setCategoria({
+      ...categoria,
+      [e.target.name]: e.target.value
     });
+  }
 
-    async function buscarPorId(id: string) {
-        try {
-            await listar(`/categorias/${id}`, setCategoria, {});
-        } catch (error) {
-            console.error('Erro ao buscar categoria por ID', error);
-        }
+  async function salvar(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (id) {
+      await atualizar('/categorias', categoria);
+      alert('Categoria atualizada!');
+    } else {
+      await cadastrar('/categorias', categoria);
+      alert('Categoria cadastrada!');
     }
 
-    useEffect(() => {
-        if (id !== undefined) {
-            buscarPorId(id);
-        }
-    }, [id]);
+    navigate('/categorias');
+  }
 
-    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setCategoria({
-            ...categoria,
-            [e.target.name]: e.target.value
-        });
-    }
+  return (
+    <div className="container mx-auto flex flex-col items-center">
+      <h1 className="text-3xl my-6">
+        {id ? 'Editar Categoria' : 'Cadastrar Categoria'}
+      </h1>
 
-    async function gerarNovaCategoria(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
+      <form onSubmit={salvar} className="flex flex-col gap-4 w-1/2">
 
-        if (id !== undefined) {
-            try {
-                await atualizar(`/categorias/${categoria.id}`, categoria, setCategoria, {});
-                alert('Categoria atualizada com sucesso!');
-            } catch (error) {
-                alert('Erro ao atualizar a Categoria');
-                return;
-            }
-        } else {
-            try {
-                await cadastrar(`/categorias`, categoria, setCategoria, {});
-                alert('Categoria cadastrada com sucesso!');
-            } catch (error) {
-                alert('Erro ao cadastrar a Categoria');
-                return;
-            }
-        }
+        <input
+          type="text"
+          name="titulo"
+          placeholder="Título"
+          value={categoria.titulo}
+          onChange={atualizarEstado}
+          required
+        />
 
-        navigate('/categorias');
-    }
+        <input
+          type="text"
+          name="descricao"
+          placeholder="Descrição"
+          value={categoria.descricao}
+          onChange={atualizarEstado}
+          required
+        />
 
-    return (
-        <div className="container flex flex-col items-center justify-center mx-auto">
-            <h1 className="text-4xl text-center my-8">
-                {id !== undefined ? 'Editar Categoria' : 'Cadastrar Categoria'}
-            </h1>
+        <input
+          type="text"
+          name="setor"
+          placeholder="Setor"
+          value={categoria.setor}
+          onChange={atualizarEstado}
+          required
+        />
 
-            <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="descricao">Descrição da Categoria</label>
-                    <input
-                        type="text"
-                        placeholder="Ex: medicamentos para dor"
-                        name="descricao"
-                        className="border-2 border-navy rounded p-2 focus:outline-none focus:ring-2 focus:ring-matcha"
-                        value={categoria.descricao}
-                        onChange={atualizarEstado}
-                        required
-                    />
-                </div>
+        <button type="submit" className="bg-green-600 text-white py-2">
+          {id ? 'Atualizar' : 'Cadastrar'}
+        </button>
 
-                <button
-                    className="rounded text-white bg-navy hover:bg-azure w-1/2 py-2 mx-auto block transition font-bold"
-                    type="submit"
-                >
-                    {id !== undefined ? 'Atualizar' : 'Cadastrar'}
-                </button>
-            </form>
-        </div>
-    );
+      </form>
+    </div>
+  );
 }
 
 export default FormCategoria;

@@ -72,3 +72,24 @@ src/
 ---
 
 # ⚙️ Como Executar o Projeto
+
+```
+ # Clonar o repositório
+git clone https://github.com/seu-usuario/seu-repositorio.git
+
+# Entrar na pasta
+cd nome-do-projeto
+
+# Instalar dependências
+npm install
+
+# Rodar o projeto
+npm run dev
+
+```
+
+👩‍💻 Autora
+
+Gabrieli Martins
+
+LinkedIn: https://linkedin.com/in/gabrielimartinsdev

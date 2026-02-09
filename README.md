@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# 💊 Pharmacy Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web de uma farmácia desenvolvida com **React, Vite e Tailwind CSS**, focada em performance, organização de código e experiência do usuário.
 
-Currently, two official plugins are available:
+Este projeto simula um e-commerce farmacêutico moderno, com layout responsivo, navegação intuitiva e estrutura escalável.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📖 Sobre o Projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O **Pharmacy Frontend** foi desenvolvido com o objetivo de praticar a construção de interfaces modernas utilizando tecnologias atuais do ecossistema React.
 
-## Expanding the ESLint configuration
+A aplicação simula uma plataforma online de farmácia, permitindo visualizar produtos, navegar por categorias e explorar uma experiência de compra simples e funcional.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+O foco principal foi:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Criar uma interface limpa e organizada  
+- Trabalhar componentização  
+- Aplicar estilização eficiente com Tailwind  
+- Garantir responsividade e boa usabilidade  
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Tecnologias Utilizadas
+
+- **React**
+- **Vite**
+- **Tailwind CSS**
+- **JavaScript ou TypeScript** (ajuste conforme você utilizou)
+- **React Router** (se estiver usando)
+
+---
+
+## 🧠 Conceitos Aplicados
+
+- Componentização e reutilização de componentes  
+- Organização de pastas escalável  
+- Estilização com Tailwind (Utility-First CSS)  
+- Responsividade (Mobile First)  
+- Gerenciamento de estado  
+- Renderização dinâmica de listas de produtos  
+
+---
+
+## 📂 Estrutura do Projeto
+
+```bash
+src/
+ ├── assets/
+ ├── components/
+ ├── pages/
+ ├── App.tsx
+ └── main.tsx
 ```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 🎨 Funcionalidades
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🏥 Página inicial com destaque de produtos
+
+💊 Listagem de medicamentos
+
+🔎 Filtro ou categorias (se implementado)
+
+🛒 Carrinho de compras (se implementado)
+
+📱 Layout totalmente responsivo
+
+⚡ Interface rápida e otimizada com Vite
+
+---
+
+# ⚙️ Como Executar o Projeto

@@ -88,7 +88,7 @@ npm run dev
 
 ```
 
-👩‍💻 Autora
+# 👩‍💻 Autora
 
 Gabrieli Martins
 
